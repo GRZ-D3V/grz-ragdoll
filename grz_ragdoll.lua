@@ -25,12 +25,17 @@ end)
 
 RegisterCommand('+ragdoll', function()
 	Player.ragdoll = not Player.ragdoll
+	if Player.ragdoll == true then
+		RagDoll()
+	end
 end, false)
+
 RegisterKeyMapping('+ragdoll', 'S\'endormir / se réveiller', 'keyboard', 'j')
 --RegisterKeyMapping('+ragdoll', 'Sleep / wake UP', 'keyboard', 'j') ENGLISH VERSION
 
+function RagDoll()
 Citizen.CreateThread(function()
-    while true do
+    while Player.ragdoll == true do
         Citizen.Wait(0)
         local plyPed = PlayerPedId()
         local entityAlpha = GetEntityAlpha(GetPlayerPed(-1))
@@ -51,3 +56,4 @@ Citizen.CreateThread(function()
         end    
     end
 end)
+end
